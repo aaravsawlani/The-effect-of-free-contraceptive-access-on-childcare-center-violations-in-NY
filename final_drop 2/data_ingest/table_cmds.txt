@@ -1,0 +1,11 @@
+// turns multi_file output into single text file
+hdfs dfs -cat final_project/data_ingest/clean/cc_inspections/* > cc_clean.txt
+hdfs dfs -cat final_project/data_ingest/clean/cc_inspections/* > condom_clean.txt
+
+// put textfiles into hdfs
+hdfs dfs -put cc_clean.txt final_project/data_ingest/clean
+hdfs dfs -put condom_clean.txt final_project/data_ingest/clean
+
+// enter hive and use code to create tables
+CREATE EXTERNAL TABLE childcare_violations (borough STRING, zip STRING, maxCap INT, violationRate FLOAT, avgViolationRate FLOAT, hhViolationRate FLOAT, avgHHViolationRate FLOAT, critViolationRate FLOAT, avgCritViolationRate FLOAT, violationCategory STRING, violationStatus STRING, highRisk STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE location 'hdfs://nyu-dataproc-m/user/rgs361_nyu_edu/final_project/data_ingest/clean/cc_clean.txt';
+CREATE EXTERNAL TABLE condom_availability (partner_type STRING, borough STRING, zip STRING, male_c STRING, female_c STRING, lube STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE location 'hdfs://nyu-dataproc-m/user/rgs361_nyu_edu/final_project/data_ingest/clean/condom_clean.txt'; 

@@ -1,0 +1,1 @@
+hadoop jar countRecs.jar CountRecs final_project/data_ingest/clean/cc_inspections final_project/profiling_code/russel/rec_count

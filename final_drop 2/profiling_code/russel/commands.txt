@@ -1,0 +1,10 @@
+// get distinct values for childcare violation table
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat distinct.sql)"
+
+// get number of severe violations per zip code
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat severe.sql)"
+
+// get childcare center violations and number of condom providers per zipcode
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat correlation_count.sql)"
+
+optionally, redirect output to textfile by adding " > filename.txt" at the end each command

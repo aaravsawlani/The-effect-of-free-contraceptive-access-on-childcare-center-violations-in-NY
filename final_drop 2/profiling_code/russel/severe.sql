@@ -1,0 +1,1 @@
+select zip, count(*) as severeViolations from childcare_violations where violationcategory <> 'GENERAL' group by zip order by count(*) desc;

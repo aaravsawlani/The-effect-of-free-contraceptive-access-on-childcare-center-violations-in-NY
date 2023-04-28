@@ -1,0 +1,14 @@
+// get distinct values for condom availability table
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat distinct.sql)"
+
+// get number of distributors without female condoms
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat female_false.sql)"
+
+// get number of distributors with female condoms
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat female_true.sql)"
+
+// get number of distributors without male condoms
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat male_false.sql)"
+
+// get number of distributors with male condoms
+presto --catalog hive --schema rgs361_nyu_edu --execute "$(cat male_true.sql)"
